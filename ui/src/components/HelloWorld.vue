@@ -15,16 +15,16 @@ export default {
   },
   created: function () {
     var url = '/appapi/test'
-    if (process.env.NODE_ENV == 'development') {
+    if (process.env.NODE_ENV === 'development') {
       url = 'http://localhost:3000/appapi/test'
     }
     axios.get(url)
-    .then(function (response) {
-      this.msg = response.data
-    }.bind(this))
-    .catch(function (error) {
-      console.log(error);
-    });
+      .then(function (response) {
+        this.msg = response.data
+      }.bind(this))
+      .catch(function (error) {
+        console.log(error)
+      })
   }
 }
 </script>
