@@ -1,4 +1,4 @@
-# MindSphere Hello World example in Node.js
+# MindSphere v3 Hello World example in Node.js
 ## Introduction
 This is a hello world example application for [Siemens MindSphere](https://www.siemens.com/global/en/home/products/software/mindsphere.html) v3 platform. <br />
 This repository is composed by three components:
@@ -143,19 +143,33 @@ Go to the Vue project root directory and build the project
 ```
 npm run build
 ```
+
+Perform the initial CF login ([guide](https://developer.mindsphere.io/howto/howto-cloud-foundry/index.html#connecting-to-cloud-foundry-via-cf-cli)) <br />
+
+Edit `manifest.yml`, at least the following items should be modified.
+
+- `[yourCFComponent1]` in the first `applications/routes/route` element
+- `[yourCFComponent2]` in the second `applications/routes/route` element
+
+Go to the root project directory and push the subsidiary projects to MindSphere
+```
+cd ..
+cf push
+```
+The `cf push` command will read `manifest.yml` and push the related components.
+
+After the command success, you're now ready to create a new application on MindSphere Developer Cockpit.
 Create an application from the MindSphere Launchpad > Developer Cockpit. <br />
 Create two components:
 *   backendserver
-    *   Cloud Foundry Direct URL: https://[yourCFComponent1].apps.eu1.mindsphere.io
+    *   Cloud Foundry Direct URL: `https://[yourCFComponent1].apps.eu1.mindsphere.io`
+    *   Endpoints:
+        * `/appapi/**`
+        * `/users/**`
 *   frontendserver
-    *   Cloud Foundry Direct URL: https://[yourCFComponent2].apps.eu1.mindsphere.io
+    *   Cloud Foundry Direct URL: `https://[yourCFComponent2].apps.eu1.mindsphere.io`
+    *   Endpoints:
+        * `/`
+        * `/static/**`
 
-Perform the initial CF login ([guide](https://developer.mindsphere.io/howto/howto-cloud-foundry/index.html#connecting-to-cloud-foundry-via-cf-cli)) <br />
-Go to the backendServer project root directory and push the project to MindSphere
-```
-cf push [yourCFComponent1]
-```
-Go to the frontendServer project root directory and push the project to MindSphere
-```
-cf push [yourCFComponent2]
-```
+The rest of the deployment process can be found at this [tutorial](https://developer.mindsphere.io/howto/howto-cf-running-app.html#delete-the-application-via-the-developer-cockpit). Note that some screenshots are NOT up-to-date but you can guess what you do.
