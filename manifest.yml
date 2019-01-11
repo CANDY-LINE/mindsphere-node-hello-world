@@ -1,0 +1,17 @@
+applications:
+- name: backendserver
+  instances: 1
+  routes:
+  - route: [yourCFComponent1].apps.eu1.mindsphere.io
+  buildpacks: # Run `cf buildpacks` to list avaliable buildpacks
+    - nodejs_buildpack
+  path: ./backendServer
+  memory: 256M
+- name: frontendServer
+  instances: 1
+  routes:
+  - route: [yourCFComponent2].apps.eu1.mindsphere.io
+  buildpacks: # Run `cf buildpacks` to list avaliable buildpacks
+    - nodejs_buildpack
+  path: ./frontendServer
+  memory: 256M
